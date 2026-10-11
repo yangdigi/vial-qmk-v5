@@ -116,6 +116,10 @@ void ec_select_col(uint8_t col)
 {
     //select col, B12(s0) B13(s1) B14(s2)
     // B11: 4051_EN0 B10: 4051_EN1
+#ifdef COLS_REMAP
+    static cols_trans[12] = COLS_REMAP;
+    col = cols_trans[col];
+#endif
     palClearPort(GPIOB, COL_PIN_MASK);
     palSetPort(GPIOB, (col&0b111)<<12); //S2..0
     if (col < 8) palSetPad(GPIOB, 10); //EN0
@@ -174,15 +178,11 @@ uint8_t ec_get_key(uint8_t row, uint8_t col)
 
 void ec_apc_set(uint8_t level)
 {
-
-
-
-    //static uint8_t ec_ap_level[8] = {95, 70, 80, 90, 95, 100, 105, 110};
-
-    
-    //static uint8_t ec_ap_level[8] = {90, 94, 98, 102, 104, 108, 112, 126};
-
-    static uint8_t ec_ap_level[8] = {92, 100, 108, 116, 124, 132, 140, 148};
+  #ifdef USER_APC_LEVEL
+    static uint8_t ec_ap_level[8] = USER_APC_LEVEL;
+  #else
+    static uint8_t ec_ap_level[8] = {92, 100, 108, 116, 124, 132, 140, 148};  //Agar Mini EC，Agar Micro EC 暂时用的默认这个。
+  #endif
 
     ec_ap_value = ec_ap_level[level];
     ec_rp_value = ec_ap_value - level - 3;

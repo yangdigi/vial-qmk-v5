@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ec_matrix.h"
 
 void rprint(char *msg) {
+    return;
     //0xfdee
     uint8_t eeee_buf[32] = {0};
     uint8_t msg_len = strlen(msg);

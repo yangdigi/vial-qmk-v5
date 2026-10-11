@@ -20,3 +20,18 @@
 #define CH_CFG_USE_CONDVARS_TIMEOUT FALSE
 
 #include_next <chconf.h>
+
+/*
+ * The clock tree is selected at run time in stm32_clock_init_user():
+ * HSE 96 MHz when the external crystal starts, HSI 48 MHz fallback when it
+ * does not. st_lld_init() (from halInit()) programs the periodic SysTick
+ * with the compile-time 96 MHz HCLK. Retune it here if the HSE failed; this
+ * hook runs inside chSysInit(), after halInit() and before interrupts are
+ * globally enabled. The implementation lives in the board override.
+ */
+#undef CH_CFG_SYSTEM_INIT_HOOK
+#define CH_CFG_SYSTEM_INIT_HOOK()                  \
+    do {                                           \
+        void clock_systick_adjust(void);           \
+        clock_systick_adjust();                     \
+    } while (0)

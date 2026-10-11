@@ -169,7 +169,7 @@ void user_config_init(void)
 
 
 
-    static const uint8_t indicator_hue_preset[8] = {0, 21, 42, 85, 127, 170, 212, 255};
+    static const uint8_t indicator_hue_preset[8] = {254, 0, 42, 85, 127, 170, 212, 255};
     #ifdef INDICATOR_VAL
     static uint8_t val = INDICATOR_VAL;
     #else 
@@ -185,7 +185,8 @@ void user_config_init(void)
         layout_value >>= 3;
         indicator_color_config[i] = (layout_value & 0b111);
         uint8_t hue = indicator_hue_preset[ indicator_color_config[i] ];
-        if (hue == 255) indicator_color[i] = (LED_TYPE){val/2, val/2, val/2};
+        if (hue == 254) indicator_color[i] = (LED_TYPE){val/2, val/2, val/2}; //white color, val/2
+        else if (hue == 255) indicator_color[i] = (LED_TYPE){0, 0, 0}; //disable this indicator
         else            indicator_color[i] = hsv_to_rgb((HSV){hue, 255, val});
         xprintf("\n indicator %d R: %d, G: %d, B:%d", i, indicator_color[i].r, indicator_color[i].g, indicator_color[i].b);
     }

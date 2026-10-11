@@ -15,6 +15,7 @@
 #define MATRIX_KEYS 60
 
 #define APC_ENABLE
+#define USER_APC_LEVEL {90, 94, 98, 102, 104, 108, 112, 126} //TEC
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT    8
 #define FLASH_KEYMAP_COUNT    2

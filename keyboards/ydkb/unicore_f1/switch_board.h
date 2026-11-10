@@ -35,7 +35,7 @@ static inline void sleep_us(int us){
 static inline void get_key_ready(void) {
     // PB13 input
     palSetPadMode(GPIOB, 13, GETKEY_INPUT_MODE);
-    sleep_us(2);
+    //wait_us(3);
 }
 
 static inline void select_key_ready(void) {

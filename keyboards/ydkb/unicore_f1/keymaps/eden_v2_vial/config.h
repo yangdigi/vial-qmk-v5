@@ -4,6 +4,8 @@
 #define PRODUCT_ID    0x2402
 #undef  PRODUCT
 #define PRODUCT     Eden v2 Keyboard (FW_VER)
+#define MAX_ROWS 9
+
 #define DYNAMIC_KEYMAP_LAYER_COUNT    6
 #define FLASH_KEYMAP_COUNT    2
 #define VIAL_KEYBOARD_UID    {0x2E, 0xE6, 0x0E, 0x23, 0x34, 0xEF, 0x99, 0x37}

@@ -13,7 +13,7 @@
         "ISO Enter",
         "Split LShift",
         ["Space Row", "6.25u", "7u"],
-        ["CapsLock Color", "Red", "Orange", "Yellow", "Green", "Cyan", "Blue", "Violet", "White"]
+        ["CapsLock Color", "White", "Red", "Yellow", "Green", "Cyan", "Blue", "Violet", "Disable"]
     ], 
     "keymap": [
         [{"x":2.5,"c":"#777777"},"0,0",{"x":-1,"c":"#cccccc","h":0.75,"d":true},"0,0\n\n\n4,0","0,1","0,2","0,3","0,4","0,5","0,6","0,7","8,3","8,4","8,5","8,6","8,7",{"c":"#aaaaaa","w":2},"8,0\n\n\n0,0","8,1",{"x":0.25,"c":"#cccccc"},"8,0\n\n\n0,1",{"c":"#aaaaaa"},"8,2\n\n\n0,1"],

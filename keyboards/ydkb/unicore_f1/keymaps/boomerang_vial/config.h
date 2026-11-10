@@ -6,6 +6,11 @@
 #define PRODUCT     Boomerang Keyboard (FW_VER)
 #define MAX_ROWS 10
 
+#undef  DEBOUNCE_DN
+#undef  DEBOUNCE_UP
+#define DEBOUNCE_DN 1
+#define DEBOUNCE_UP 7
+
 #define DYNAMIC_KEYMAP_LAYER_COUNT    8
 #define FLASH_KEYMAP_COUNT    2
 #define VIAL_KEYBOARD_UID    {0x2E, 0xE6, 0x0E, 0x23, 0x34, 0xEF, 0x99, 0x37}

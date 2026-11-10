@@ -16,5 +16,8 @@
 
 #pragma once
 
+#ifdef _USE_I2C1
+#define HAL_USE_I2C TRUE
+#endif
 
 #include_next <halconf.h>

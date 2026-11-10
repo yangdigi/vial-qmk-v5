@@ -184,6 +184,7 @@ bool command_extra(uint8_t code)
 }
 
 void restart_usb_driver(USBDriver *usbp) {
+    wait_ms(200);
     NVIC_SystemReset();
 }
 

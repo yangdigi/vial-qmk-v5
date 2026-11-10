@@ -42,6 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SHOW_BOUNCE_UP
 
 extern debug_config_t debug_config;
+extern bool clock_hse_ok;
 
 bool bootmagic_checked = 0;
 static matrix_row_t matrix[MATRIX_ROWS] = {0};
@@ -116,7 +117,8 @@ uint8_t matrix_scan(void)
 #endif
 
     matrix_scan_kb(); // use this to run hook_keyboard_loop()
-#if 0
+
+#if (MAX_ROWS < 9)
     //scan matrix every 1ms
     static uint16_t matrix_scan_timestamp = 0;
     uint16_t time_check = timer_read();
@@ -208,8 +210,17 @@ static void init_cols(void)
  
 static uint8_t get_key(void)
 {
-    // B13(595) and B14(5020)
-    return palReadPad(GPIOB, 13)? 0 : 0x80;
+    // B13
+    //return palReadPad(GPIOB, 13)? 0 : 0x80;
+    
+    uint16_t read_debounce = 0;
+    uint8_t timeout = 64;
+    while(timeout--) {
+        uint16_t read = palReadPad(GPIOB, 13)? 0 : 0x8000;
+        read_debounce = (read_debounce >> 1) | read;
+        if (read_debounce == 0 || read_debounce == 0xffff) break;
+    }
+    return (read_debounce == 0xffff)? 0x80 : 0;
 }
 
 static void select_key(uint8_t mode)

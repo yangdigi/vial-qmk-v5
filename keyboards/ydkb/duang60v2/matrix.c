@@ -129,7 +129,7 @@ uint8_t matrix_scan(void)
             if (1) {
                 matrix_row_t *p_row = &matrix[row];
                 matrix_row_t col_mask = ((matrix_row_t)1 << col);
-                if        (*debounce >= DEBOUNCE_NK_MASK) {  //debounce KEY DOWN
+                if        (*debounce >= DEBOUNCE_DN_MASK) {  //debounce KEY DOWN
                     *p_row |=  col_mask;
                 } else if (*debounce <= DEBOUNCE_UP_MASK) { //debounce KEY UP
                     *p_row &= ~col_mask;
@@ -220,7 +220,7 @@ static void select_key(uint8_t mode)
         DS_PL_HI();
         CLOCK_PULSE();
     }
-    _delay_us(1);
+    _delay_us(3);
 }
 
 
